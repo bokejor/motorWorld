@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { postsService } from '../../services/posts.service';
 import { StorageService } from "../../services/storage.service";
@@ -26,6 +26,10 @@ export class PublishComponent implements OnInit {
   km : string = '';
   brand : string = '';
   desc : string = '';
+
+  files: Array<Blob> = [];
+  image: Array<string> = [];
+  @ViewChild('images') ref: ElementRef;
 
 
   constructor(private fb: FormBuilder,
@@ -56,10 +60,6 @@ export class PublishComponent implements OnInit {
       this.km = this.post.km;
       this.brand = this.post.brand;
       this.desc = this.post.desc;
-
-    
-
-
     }
 
     this.validateForm = this.fb.group({
@@ -72,11 +72,51 @@ export class PublishComponent implements OnInit {
       km: [this.km, [Validators.required]],
       brand: [this.brand, [Validators.required]],
       desc: [this.desc]
-    });
-  
-     
+    });   
+  }
 
+  borrarFoto(key: number) {
    
+    this.files.splice(key, 1);
+    this.pintarFotos();  
+
+  }
+
+  addFoto(event: any) {
+    event.preventDefault();
+    this.ref.nativeElement.click();
+  }
+
+  subirFotosNuevas() {
+
+    let uploadedFiles = this.ref.nativeElement.files;
+
+    if (uploadedFiles) {
+      for (const file of uploadedFiles) {
+        this.files.push(file);        
+      }
+     
+    }
+    this.pintarFotos();
+  }
+
+  pintarFotos() {
+
+    this.image = [];
+
+    for (const file of this.files) {
+
+      let reader = new FileReader();
+     
+      reader.onload = (e: any) => { 
+        this.image.push(e.target.result);
+      };
+
+      reader.readAsDataURL(file);
+
+         
+    }
+
   }
 
   async submitForm(event: any) {

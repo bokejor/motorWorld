@@ -84,13 +84,30 @@
 
                 </div>
                 <div class="col-6">
+                    <h2>Subir fotos</h2>
+                    <div class="container">
+                        <div class="text-center">
+                            <input type="file" #images multiple (change)="subirFotosNuevas()" />
+                        </div>
+                        <div class="text-center">
+                            <div *ngFor="let img of image; let i = index">
+                                <div class="row file-listing mx-auto ">
+                                    <img class="preview col-11 white-panel" [src]="img" />
+                                    <span class="remove-file" (click)="borrarFoto(i)">X</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" text-center ">
+                            <button class="add-file" (click)="addFoto($event)">Añadir Archivos</button>
+                        </div>
 
 
+                    </div>
                 </div>
             </div>
             <nz-form-control>
-                <button *ngIf="!edit" nz-button nzType="primary" id="publicar" class="btn-block btn-success my-5">PUBLICAR EL ANUNCIO</button>
-                <button *ngIf="edit" nz-button nzType="primary" id="modificar" class="btn-block btn-warning my-5">MODIFICAR EL ANUNCIO</button>
+                <button *ngIf="!edit" nz-button nzType="primary" id="publicar" class="btn-block btn-success my-5 ">PUBLICAR EL ANUNCIO</button>
+                <button *ngIf="edit" nz-button nzType="primary" id="modificar" class="btn-block btn-warning my-5 ">MODIFICAR EL ANUNCIO</button>
             </nz-form-control>
         </form>
     </div>
