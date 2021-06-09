@@ -1,0 +1,41 @@
+@import "../../../styles"
+
+.slide-area
+  position: relative
+  height: 500px
+
+.slide-area img
+  width: 1900px
+
+.slide-text
+  position: absolute
+  left: 50%
+  top: 50%
+  transform: translate(-50%, -50%)  
+  // text-shadow: -2px -2px 1px #000, 2px 2px 1px #000, -2px 2px 1px #000, 2px -2px 1px #000
+
+.slide-text h1
+  color: $basic!important
+
+.slide-text .btn
+  text-transform: uppercase
+  letter-spacing: 1px
+  margin-top: 1rem
+  display: inline-block
+  line-height: 1.25rem
+  text-align: center
+  white-space: nowrap
+  vertical-align: middle
+  user-select: none
+  border: 1px solid transparent
+  padding: .75rem 1.25rem
+  font-size: 1rem
+  border-radius: .25rem
+  transition: all .2s ease-in-out
+
+.brand
+  padding: 10px
+  margin: 10px
+  background: linear-gradient($basic, $button)
+  border-radius: 10%
+  box-shadow: 0.1em -0.1em 0.1em

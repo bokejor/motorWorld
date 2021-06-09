@@ -1,0 +1,97 @@
+<div class="container-fluid">
+    <div class="container">
+        <div id="title-ad">
+            <h1 *ngIf="edit;else publica" class="text-center">
+                MODIFICA TU ANUNCIO
+            </h1>
+            <ng-template #publica>
+                <h1 class="text-center">PUBLICA TU ANUNCIO AQUÍ GRATIS</h1>
+            </ng-template>
+        </div>
+        <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm($event)">
+            <div class="row">
+                <div class="col-6">
+                    <h2>Datos de Contacto</h2>
+                    <nz-form-item>
+                        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" nzRequired>
+                            <span>Nombre</span>
+                        </nz-form-label>
+                        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor, introduce tu nombre!">
+                            <input nz-input id="name" formControlName="name" />
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="province" nzRequired>Provincia</nz-form-label>
+                        <nz-form-control [nzSm]="14" [nzXs]="24" [nzValidateStatus]="validateForm.controls['province']" nzErrorTip="Por favor, elige una provincia!">
+                            <nz-select formControlName="province">
+                                <nz-option nzLabel="Granada" nzValue="Granada"></nz-option>
+                                <nz-option nzLabel="Córdoba" nzValue="Cordoba"></nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phone" nzRequired>Móvil</nz-form-label>
+                        <nz-form-control [nzSm]="14" [nzXs]="24" [nzValidateStatus]="validateForm.controls['phone']" nzErrorTip="Por favor, introduce tu número!">
+                            <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
+                                <ng-template #addOnBeforeTemplate>
+                                    <nz-select formControlName="phonePrefix" class="phone-select">
+                                        <nz-option nzLabel="+34" nzValue="+34"></nz-option>
+                                        <nz-option nzLabel="+33" nzValue="+33"></nz-option>
+                                    </nz-select>
+                                </ng-template>
+                                <input formControlName="phone" id="'phone'" nz-input />
+                            </nz-input-group>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
+                        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+                            <input nz-input formControlName="email" id="email" />
+                        </nz-form-control>
+                    </nz-form-item>
+                    <h2>Datos del Vehículo</h2>
+                    <nz-form-item>
+                        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="price" nzRequired>
+                            <span>Precio</span>
+                        </nz-form-label>
+                        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor, introduce el precio!">
+                            <input nz-input id="price" formControlName="price" type="number" step="any" />
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="km" nzRequired>
+                            <span>Kilometraje</span>
+                        </nz-form-label>
+                        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Por favor, introduce el kilometraje!">
+                            <input nz-input id="km" formControlName="km" />
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="brand" nzRequired>Marca</nz-form-label>
+                        <nz-form-control [nzSm]="14" [nzXs]="24" [nzValidateStatus]="validateForm.controls['brand']" nzErrorTip="Por favor, elige una marca!">
+                            <nz-select formControlName="brand">
+                                <nz-option nzLabel="Aprilia" nzValue="Aprilia"></nz-option>
+                                <nz-option nzLabel="Benelli" nzValue="Benelli"></nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="7">Descripción</nz-form-label>
+                        <nz-form-control [nzSpan]="12" nzErrorTip="Por favor, escribe la descripción!">
+                            <textarea formControlName="desc" nz-input rows="2" placeholder="Escribe la descripción"></textarea>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                </div>
+                <div class="col-6">
+
+
+                </div>
+            </div>
+            <nz-form-control>
+                <button *ngIf="!edit" nz-button nzType="primary" id="publicar" class="btn-block btn-success my-5">PUBLICAR EL ANUNCIO</button>
+                <button *ngIf="edit" nz-button nzType="primary" id="modificar" class="btn-block btn-warning my-5">MODIFICAR EL ANUNCIO</button>
+            </nz-form-control>
+        </form>
+    </div>
+</div>

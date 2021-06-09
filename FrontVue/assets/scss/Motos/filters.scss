@@ -1,0 +1,33 @@
+// filtros
+@media (min-width:300px){
+
+.filters{
+  width: 200px;
+  border-bottom: solid #3ca15e;
+  height: 40px;
+}
+
+label{
+  font-weight: bold;
+}
+
+.typeMotos{
+
+  inline-size: min-content;
+  padding: 20px;
+  margin: 20px;
+  background:rgba(8,8,8,0.12157);
+  border-radius: 10px;
+  box-shadow: 0 1px 3px #3ca15e;
+  transition: box-shadow .3s ease;
+
+}
+
+}
+
+@media (min-width:820px){
+.typeMotos{
+  float: left;
+}
+
+}
